@@ -57,4 +57,13 @@ public class RepliesApiController implements RepliesApi {
 				.map(ResponseEntity::ok)
 				.orElseGet(() -> ResponseEntity.notFound().build());
 	}
+
+	@Override
+	@PreAuthorize("isAuthenticated()")
+	public ResponseEntity<Void> deleteReply(Long id) {
+		log.debug("deleteReply id={}", id);
+		return replyService.delete(id)
+				? ResponseEntity.noContent().build()
+				: ResponseEntity.notFound().build();
+	}
 }

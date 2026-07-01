@@ -263,6 +263,25 @@ paths:
         "404":
           description: Not found
 
+    delete:
+      tags: [Replies]
+      operationId: deleteReply
+      summary: Delete a reply
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "204":
+          description: Deleted
+        "403":
+          description: Not allowed to delete this reply
+        "404":
+          description: Not found
+
   /users:
     get:
       tags: [Users]

@@ -1,0 +1,565 @@
+:root {
+  --bg: #f6f7f3;
+  --surface: #ffffff;
+  --surface-soft: #f0f5f3;
+  --text: #202521;
+  --muted: #68736d;
+  --line: #d9ded8;
+  --accent: #2f7d6b;
+  --accent-strong: #236454;
+  --warm: #b55d47;
+  --danger: #a33a3a;
+  --shadow: 0 12px 36px rgba(35, 45, 38, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  background: var(--bg);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px clamp(16px, 4vw, 44px);
+  border-bottom: 1px solid var(--line);
+  background: rgba(246, 247, 243, 0.94);
+  backdrop-filter: blur(10px);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 8px;
+  color: #ffffff;
+  background: var(--accent);
+  font-weight: 800;
+}
+
+.brand strong,
+.brand small {
+  display: block;
+}
+
+.brand small,
+.session,
+.eyebrow,
+.topic-meta,
+.reply-meta,
+#topicCount {
+  color: var(--muted);
+}
+
+.session {
+  text-align: right;
+  font-size: 14px;
+}
+
+.session.is-signed-in {
+  color: var(--accent-strong);
+  font-weight: 800;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
+  gap: clamp(18px, 3vw, 30px);
+  width: min(1440px, 100%);
+  margin: 0 auto;
+  padding: clamp(18px, 4vw, 38px);
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.panel,
+.topics-column,
+.detail-column {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.panel {
+  padding: 18px;
+}
+
+.panel-head,
+.workspace-head,
+.topic-header,
+.replies-head,
+.button-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(30px, 4vw, 46px);
+  line-height: 1.05;
+}
+
+h2 {
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: 17px;
+}
+
+.workspace {
+  min-width: 0;
+}
+
+.workspace-head {
+  margin-bottom: 18px;
+}
+
+.workspace-head p {
+  margin-top: 8px;
+}
+
+.tabs {
+  display: inline-flex;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-soft);
+}
+
+.tab {
+  padding: 8px 10px;
+  border-radius: 6px;
+  color: var(--muted);
+  background: transparent;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.tab.active {
+  color: var(--text);
+  background: var(--surface);
+  box-shadow: 0 2px 10px rgba(32, 37, 33, 0.08);
+}
+
+.stack,
+.edit-box,
+.reply-composer {
+  display: grid;
+  gap: 12px;
+}
+
+.panel-head + .stack,
+.panel-head + .signed-in {
+  margin-top: 16px;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+input,
+textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 11px 12px;
+  color: var(--text);
+  background: #ffffff;
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(47, 125, 107, 0.16);
+}
+
+.primary,
+.secondary {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 0 14px;
+  font-weight: 800;
+}
+
+.primary {
+  color: #ffffff;
+  background: var(--accent);
+}
+
+.primary:hover {
+  background: var(--accent-strong);
+}
+
+.secondary {
+  border: 1px solid var(--line);
+  color: var(--text);
+  background: #ffffff;
+}
+
+.secondary:hover {
+  border-color: #bfc8c0;
+  background: var(--surface-soft);
+}
+
+.danger-action {
+  color: var(--danger);
+}
+
+.danger-action:hover {
+  border-color: rgba(163, 58, 58, 0.45);
+  background: #fff7f7;
+}
+
+.signed-in {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.forum-grid {
+  display: grid;
+}
+
+.signed-in strong,
+.signed-in small {
+  display: block;
+}
+
+.eyebrow {
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.notice {
+  position: fixed;
+  top: 76px;
+  right: clamp(14px, 4vw, 38px);
+  z-index: 20;
+  width: min(420px, calc(100vw - 28px));
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--accent);
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: #ffffff;
+  box-shadow: var(--shadow);
+}
+
+.notice.error {
+  border-left-color: var(--danger);
+}
+
+.notice.success {
+  border-left-color: var(--accent);
+}
+
+.notice.progress {
+  border-left-color: var(--warm);
+}
+
+.forum-grid {
+  grid-template-columns: minmax(280px, 390px) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.topics-column,
+.detail-column {
+  min-width: 0;
+  padding: 18px;
+}
+
+.topics-column h2 {
+  margin-bottom: 14px;
+}
+
+.topics-list,
+.replies-list,
+.users-list {
+  display: grid;
+  gap: 12px;
+}
+
+.topic-card,
+.reply-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: #ffffff;
+}
+
+.topic-card {
+  display: grid;
+  gap: 9px;
+  width: 100%;
+  text-align: left;
+}
+
+.topic-card:hover,
+.topic-card.active {
+  border-color: var(--accent);
+  background: #fbfdfb;
+}
+
+.topic-card.active {
+  box-shadow: inset 4px 0 0 var(--accent);
+}
+
+.topic-card h3 {
+  overflow-wrap: anywhere;
+}
+
+.topic-card p,
+.reply-card p,
+.topic-content {
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.topic-meta,
+.reply-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  font-size: 13px;
+}
+
+.topic-detail {
+  display: grid;
+  gap: 18px;
+}
+
+.topic-header {
+  align-items: start;
+}
+
+.topic-content {
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.edit-box,
+.reply-composer {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: var(--surface-soft);
+}
+
+.replies-head {
+  flex-wrap: wrap;
+}
+
+.pager {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pager span {
+  min-width: 86px;
+  color: var(--muted);
+  font-size: 14px;
+  text-align: center;
+}
+
+.reply-card {
+  display: grid;
+  gap: 10px;
+}
+
+.reply-card-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.reply-actions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.user-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  background: #ffffff;
+}
+
+.user-row strong,
+.user-row small {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.user-row small {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.user-actions {
+  display: inline-flex;
+  justify-content: flex-end;
+}
+
+.empty-state {
+  display: grid;
+  min-height: 360px;
+  align-content: center;
+  justify-items: center;
+  gap: 8px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.empty-state h2 {
+  color: var(--text);
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media (max-width: 1020px) {
+  .app-shell,
+  .forum-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    order: 2;
+  }
+}
+
+@media (max-width: 680px) {
+  .topbar,
+  .workspace-head,
+  .panel-head,
+  .topic-header,
+  .reply-card-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .reply-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .user-row {
+    grid-template-columns: 1fr;
+  }
+
+  .user-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .session {
+    text-align: left;
+  }
+
+  .app-shell {
+    padding: 14px;
+  }
+
+  .tabs,
+  .primary,
+  .secondary {
+    width: 100%;
+  }
+
+  .button-row,
+  .pager {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .pager span {
+    min-width: 0;
+  }
+
+  .notice {
+    top: 96px;
+    right: 14px;
+  }
+}

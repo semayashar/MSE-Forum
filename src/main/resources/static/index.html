@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MSE Forum</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="MSE Forum home">
+        <span class="brand-mark">M</span>
+        <span>
+          <strong>MSE Forum</strong>
+          <small>Topics and replies</small>
+        </span>
+      </a>
+      <div class="session" id="sessionSummary"></div>
+    </header>
+
+    <main class="app-shell">
+      <aside class="sidebar">
+        <section class="panel auth-panel" aria-labelledby="authTitle">
+          <div class="panel-head">
+            <h2 id="authTitle">Account</h2>
+            <div class="tabs" id="authTabs">
+              <button type="button" class="tab active" data-auth-mode="login">Login</button>
+              <button type="button" class="tab" data-auth-mode="register">Register</button>
+            </div>
+          </div>
+
+          <form id="loginForm" class="stack">
+            <label>
+              Username
+              <input name="username" autocomplete="username" required>
+            </label>
+            <label>
+              Password
+              <input name="password" type="password" autocomplete="current-password" required>
+            </label>
+            <button type="submit" class="primary">Login</button>
+          </form>
+
+          <form id="registerForm" class="stack hidden">
+            <label>
+              Username
+              <input name="username" autocomplete="username" required maxlength="100">
+            </label>
+            <label>
+              Email
+              <input name="email" type="email" autocomplete="email" maxlength="320">
+            </label>
+            <label>
+              Password
+              <input name="password" type="password" autocomplete="new-password" required minlength="8" maxlength="72">
+            </label>
+            <button type="submit" class="primary">Create Account</button>
+          </form>
+
+          <div id="signedInPanel" class="signed-in hidden">
+            <div>
+              <span class="eyebrow">Signed in</span>
+              <strong id="signedInName"></strong>
+              <small id="signedInRole"></small>
+            </div>
+            <button type="button" id="logoutButton" class="secondary">Logout</button>
+          </div>
+        </section>
+
+        <section class="panel compose-panel hidden" id="topicComposer" aria-labelledby="newTopicTitle">
+          <div class="panel-head">
+            <h2 id="newTopicTitle">New Topic</h2>
+          </div>
+          <form id="createTopicForm" class="stack">
+            <label>
+              Title
+              <input name="title" required maxlength="255">
+            </label>
+            <label>
+              Description
+              <textarea name="content" rows="5" maxlength="10000"></textarea>
+            </label>
+            <button type="submit" class="primary">Publish Topic</button>
+          </form>
+        </section>
+
+        <section class="panel users-panel hidden" id="userAdminPanel" aria-labelledby="usersTitle">
+          <div class="panel-head">
+            <h2 id="usersTitle">Users</h2>
+            <button type="button" id="refreshUsersButton" class="secondary">Refresh</button>
+          </div>
+          <div id="usersList" class="users-list"></div>
+        </section>
+      </aside>
+
+      <section class="workspace">
+        <div class="workspace-head">
+          <div>
+            <h1>Forum Topics</h1>
+            <p id="topicCount">Loading topics...</p>
+          </div>
+          <button type="button" id="refreshButton" class="secondary">Refresh</button>
+        </div>
+
+        <div id="notice" class="notice hidden" role="status"></div>
+
+        <div class="forum-grid">
+          <section class="topics-column" aria-labelledby="topicsTitle">
+            <h2 id="topicsTitle">Topics</h2>
+            <div id="topicsList" class="topics-list"></div>
+          </section>
+
+          <section class="detail-column" aria-labelledby="detailTitle">
+            <div id="emptyDetail" class="empty-state">
+              <h2 id="detailTitle">Select a topic</h2>
+              <p>Choose a topic from the list to read replies.</p>
+            </div>
+
+            <article id="topicDetail" class="topic-detail hidden">
+              <div class="topic-header">
+                <div>
+                  <p class="eyebrow" id="topicMeta"></p>
+                  <h2 id="topicTitle"></h2>
+                </div>
+                <button type="button" id="editTopicButton" class="secondary hidden">Edit</button>
+              </div>
+              <p id="topicContent" class="topic-content"></p>
+
+              <form id="editTopicForm" class="edit-box hidden">
+                <label>
+                  Title
+                  <input name="title" required maxlength="255">
+                </label>
+                <label>
+                  Description
+                  <textarea name="content" rows="4" maxlength="10000"></textarea>
+                </label>
+                <div class="button-row">
+                  <button type="submit" class="primary">Save Topic</button>
+                  <button type="button" id="cancelEditTopicButton" class="secondary">Cancel</button>
+                </div>
+              </form>
+
+              <div class="replies-head">
+                <h3>Replies</h3>
+                <div class="pager">
+                  <button type="button" id="prevRepliesButton" class="secondary">Previous</button>
+                  <span id="replyPageInfo"></span>
+                  <button type="button" id="nextRepliesButton" class="secondary">Next</button>
+                </div>
+              </div>
+
+              <div id="repliesList" class="replies-list"></div>
+
+              <form id="createReplyForm" class="reply-composer hidden">
+                <label>
+                  Reply
+                  <textarea name="content" rows="4" required maxlength="10000"></textarea>
+                </label>
+                <button type="submit" class="primary">Post Reply</button>
+              </form>
+            </article>
+          </section>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

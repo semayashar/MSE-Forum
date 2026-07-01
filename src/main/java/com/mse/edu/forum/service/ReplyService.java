@@ -91,6 +91,18 @@ public class ReplyService {
 		return Optional.of(replyMapper.toResponse(saved));
 	}
 
+	@Transactional
+	public boolean delete(Long id) {
+		Optional<ReplyEntity> existing = replyRepository.findById(id);
+		if (existing.isEmpty()) {
+			return false;
+		}
+		ReplyEntity entity = existing.get();
+		currentUserService.requireCanEdit(entity.getAuthor().getId(), "Not allowed to delete this reply");
+		replyRepository.delete(entity);
+		return true;
+	}
+
 	private UserEntity findCurrentUser(ForumUserDetails currentUser) {
 		return userRepository
 				.findById(currentUser.getId())
