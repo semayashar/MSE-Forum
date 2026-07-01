@@ -1,0 +1,15 @@
+target/
+build/
+
+.git/
+.github/
+.idea/
+.vscode/
+.refact/
+
+.env
+.env.local
+*.iml
+*.iws
+*.ipr
+*.log

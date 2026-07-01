@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "ForumApplication",
+      "request": "launch",
+      "mainClass": "com.mse.edu.forum.ForumApplication",
+      "projectName": "forum",
+      "env": {
+        "SPRING_PROFILES_ACTIVE": "dev",
+        "JWT_SECRET": "change-me-to-a-long-random-secret-at-least-32-chars",
+        "JWT_EXPIRATION_MS": "86400000",
+        "SPRING_DATASOURCE_URL": "jdbc:postgresql://localhost:5432/forum_app",
+        "SPRING_DATASOURCE_USERNAME": "admin",
+        "SPRING_DATASOURCE_PASSWORD": "admin",
+        "SERVER_PORT": "9001"
+      }
+    }
+  ]
+}
