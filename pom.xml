@@ -13,7 +13,7 @@
 	<properties>
 		<java.version>21</java.version>
 		<mapstruct.version>1.6.3</mapstruct.version>
-		<openapi-generator.version>7.14.0</openapi-generator.version>
+		<api-generator.version>7.14.0</api-generator.version>
 		<testcontainers.version>1.21.3</testcontainers.version>
 	</properties>
 	<dependencies>
@@ -178,7 +178,7 @@
 			<plugin>
 				<groupId>org.openapitools</groupId>
 				<artifactId>openapi-generator-maven-plugin</artifactId>
-				<version>${openapi-generator.version}</version>
+				<version>${api-generator.version}</version>
 				<executions>
 					<execution>
 						<id>generate-forum-api</id>
@@ -186,7 +186,8 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/openapi/openapi.yaml</inputSpec>
+							<inputSpec>${project.basedir}/src/main/resources/api/forum.yaml</inputSpec>
+							<output>${project.build.directory}/generated-sources/forum-api</output>
 							<generatorName>spring</generatorName>
 							<apiPackage>com.mse.edu.forum.api.generated</apiPackage>
 							<modelPackage>com.mse.edu.forum.api.generated.model</modelPackage>

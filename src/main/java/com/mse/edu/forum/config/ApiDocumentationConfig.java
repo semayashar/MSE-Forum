@@ -9,18 +9,18 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
 @Configuration
-public class OpenApiFromSpecConfig {
+public class ApiDocumentationConfig {
 
 	@Bean
-	public OpenAPI openAPI() throws IOException {
-		var resource = new ClassPathResource("openapi/openapi.yaml");
+	public OpenAPI apiDocumentation() throws IOException {
+		var resource = new ClassPathResource("api/forum.yaml");
 		if (!resource.exists()) {
-			throw new IllegalStateException("Missing classpath resource: openapi/openapi.yaml");
+			throw new IllegalStateException("Missing classpath resource: api/forum.yaml");
 		}
 		String yaml = new String(resource.getContentAsByteArray(), StandardCharsets.UTF_8);
 		var result = new OpenAPIV3Parser().readContents(yaml, null, null);
 		if (result.getOpenAPI() == null) {
-			throw new IllegalStateException("Failed to parse openapi.yaml: " + result.getMessages());
+			throw new IllegalStateException("Failed to parse API spec: " + result.getMessages());
 		}
 		return result.getOpenAPI();
 	}

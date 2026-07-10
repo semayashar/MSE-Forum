@@ -79,7 +79,7 @@ Scalar UI:
 http://localhost:9001/scalar
 ```
 
-OpenAPI JSON:
+API Docs JSON:
 
 ```text
 http://localhost:9001/v3/api-docs
