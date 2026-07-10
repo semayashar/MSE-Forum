@@ -1,8 +1,8 @@
 package com.mse.edu.forum.service;
 
-import com.mse.edu.forum.api.generated.model.CreateUserRequest;
-import com.mse.edu.forum.api.generated.model.UpdateUserRequest;
-import com.mse.edu.forum.api.generated.model.UserResponse;
+import com.mse.edu.forum.api.model.CreateUserRequest;
+import com.mse.edu.forum.api.model.UpdateUserRequest;
+import com.mse.edu.forum.api.model.UserResponse;
 import com.mse.edu.forum.domain.UserEntity;
 import com.mse.edu.forum.domain.UserRole;
 import com.mse.edu.forum.mapper.UserMapper;

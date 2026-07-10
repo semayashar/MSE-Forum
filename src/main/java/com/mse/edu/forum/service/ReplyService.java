@@ -1,9 +1,9 @@
 package com.mse.edu.forum.service;
 
-import com.mse.edu.forum.api.generated.model.CreateReplyRequest;
-import com.mse.edu.forum.api.generated.model.ReplyPageResponse;
-import com.mse.edu.forum.api.generated.model.ReplyResponse;
-import com.mse.edu.forum.api.generated.model.UpdateReplyRequest;
+import com.mse.edu.forum.api.model.CreateReplyRequest;
+import com.mse.edu.forum.api.model.ReplyPageResponse;
+import com.mse.edu.forum.api.model.ReplyResponse;
+import com.mse.edu.forum.api.model.UpdateReplyRequest;
 import com.mse.edu.forum.domain.ReplyEntity;
 import com.mse.edu.forum.domain.UserEntity;
 import com.mse.edu.forum.mapper.ReplyMapper;

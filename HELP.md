@@ -36,7 +36,6 @@ Useful URLs:
 
 ```text
 Backend: http://localhost:9001
-Scalar UI: http://localhost:9001/scalar
 Health: http://localhost:9001/readyz
 Adminer: http://localhost:18080
 Frontend placeholder: http://localhost:14200
@@ -69,20 +68,6 @@ Stop the stack:
 
 ```powershell
 docker compose down
-```
-
-## API Docs
-
-Scalar UI:
-
-```text
-http://localhost:9001/scalar
-```
-
-API Docs JSON:
-
-```text
-http://localhost:9001/v3/api-docs
 ```
 
 ## Main Flow

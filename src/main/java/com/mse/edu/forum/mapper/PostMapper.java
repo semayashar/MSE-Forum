@@ -1,9 +1,9 @@
 package com.mse.edu.forum.mapper;
 
-import com.mse.edu.forum.api.generated.model.CreatePostRequest;
-import com.mse.edu.forum.api.generated.model.PostDetailsResponse;
-import com.mse.edu.forum.api.generated.model.PostResponse;
-import com.mse.edu.forum.api.generated.model.UpdatePostRequest;
+import com.mse.edu.forum.api.model.CreatePostRequest;
+import com.mse.edu.forum.api.model.PostDetailsResponse;
+import com.mse.edu.forum.api.model.PostResponse;
+import com.mse.edu.forum.api.model.UpdatePostRequest;
 import com.mse.edu.forum.domain.PostEntity;
 import java.time.Instant;
 import java.time.OffsetDateTime;

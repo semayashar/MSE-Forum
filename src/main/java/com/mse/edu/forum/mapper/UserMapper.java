@@ -1,10 +1,10 @@
 package com.mse.edu.forum.mapper;
 
-import com.mse.edu.forum.api.generated.model.CreateUserRequest;
-import com.mse.edu.forum.api.generated.model.UpdateUserRequest;
-import com.mse.edu.forum.api.generated.model.UserResponse;
-import com.mse.edu.forum.api.generated.model.UserRole;
-import com.mse.edu.forum.api.generated.model.UserSummary;
+import com.mse.edu.forum.api.model.CreateUserRequest;
+import com.mse.edu.forum.api.model.UpdateUserRequest;
+import com.mse.edu.forum.api.model.UserResponse;
+import com.mse.edu.forum.api.model.UserRole;
+import com.mse.edu.forum.api.model.UserSummary;
 import com.mse.edu.forum.domain.UserEntity;
 import java.time.Instant;
 import java.time.OffsetDateTime;

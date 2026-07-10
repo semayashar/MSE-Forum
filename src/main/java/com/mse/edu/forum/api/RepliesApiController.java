@@ -1,10 +1,9 @@
 package com.mse.edu.forum.api;
 
-import com.mse.edu.forum.api.generated.RepliesApi;
-import com.mse.edu.forum.api.generated.model.CreateReplyRequest;
-import com.mse.edu.forum.api.generated.model.ReplyPageResponse;
-import com.mse.edu.forum.api.generated.model.ReplyResponse;
-import com.mse.edu.forum.api.generated.model.UpdateReplyRequest;
+import com.mse.edu.forum.api.model.CreateReplyRequest;
+import com.mse.edu.forum.api.model.ReplyPageResponse;
+import com.mse.edu.forum.api.model.ReplyResponse;
+import com.mse.edu.forum.api.model.UpdateReplyRequest;
 import com.mse.edu.forum.service.ReplyService;
 import jakarta.validation.Valid;
 import org.apache.logging.log4j.LogManager;
@@ -12,10 +11,17 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class RepliesApiController implements RepliesApi {
+public class RepliesApiController {
 
 	private static final Logger log = LogManager.getLogger(RepliesApiController.class);
 
@@ -25,14 +31,17 @@ public class RepliesApiController implements RepliesApi {
 		this.replyService = replyService;
 	}
 
-	@Override
-	public ResponseEntity<ReplyPageResponse> listRepliesForPost(Long postId, Integer page, Integer size) {
+	@GetMapping("/posts/{postId}/replies")
+	public ResponseEntity<ReplyPageResponse> listRepliesForPost(
+			@PathVariable Long postId,
+			@RequestParam(defaultValue = "0") Integer page,
+			@RequestParam(defaultValue = "10") Integer size) {
 		log.debug("listRepliesForPost postId={}", postId);
 		return ResponseEntity.ok(replyService.findByPostId(postId, page, size));
 	}
 
-	@Override
-	public ResponseEntity<ReplyResponse> getReplyById(Long id) {
+	@GetMapping("/replies/{id}")
+	public ResponseEntity<ReplyResponse> getReplyById(@PathVariable Long id) {
 		log.debug("getReplyById id={}", id);
 		return replyService
 				.findById(id)
@@ -40,17 +49,19 @@ public class RepliesApiController implements RepliesApi {
 				.orElseGet(() -> ResponseEntity.notFound().build());
 	}
 
-	@Override
 	@PreAuthorize("isAuthenticated()")
-	public ResponseEntity<ReplyResponse> createReply(Long postId, @Valid CreateReplyRequest createReplyRequest) {
+	@PostMapping("/posts/{postId}/replies")
+	public ResponseEntity<ReplyResponse> createReply(
+			@PathVariable Long postId, @Valid @RequestBody CreateReplyRequest createReplyRequest) {
 		log.debug("createReply postId={}", postId);
 		ReplyResponse created = replyService.create(postId, createReplyRequest);
 		return ResponseEntity.status(HttpStatus.CREATED).body(created);
 	}
 
-	@Override
 	@PreAuthorize("isAuthenticated()")
-	public ResponseEntity<ReplyResponse> updateReply(Long id, @Valid UpdateReplyRequest updateReplyRequest) {
+	@PutMapping("/replies/{id}")
+	public ResponseEntity<ReplyResponse> updateReply(
+			@PathVariable Long id, @Valid @RequestBody UpdateReplyRequest updateReplyRequest) {
 		log.debug("updateReply id={}", id);
 		return replyService
 				.update(id, updateReplyRequest)
@@ -58,9 +69,9 @@ public class RepliesApiController implements RepliesApi {
 				.orElseGet(() -> ResponseEntity.notFound().build());
 	}
 
-	@Override
 	@PreAuthorize("isAuthenticated()")
-	public ResponseEntity<Void> deleteReply(Long id) {
+	@DeleteMapping("/replies/{id}")
+	public ResponseEntity<Void> deleteReply(@PathVariable Long id) {
 		log.debug("deleteReply id={}", id);
 		return replyService.delete(id)
 				? ResponseEntity.noContent().build()

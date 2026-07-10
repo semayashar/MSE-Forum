@@ -36,7 +36,6 @@ public class SecurityConfig {
 				.requestMatchers(HttpMethod.GET, "/replies", "/replies/**").permitAll()
 				.requestMatchers("/actuator/health/**", "/actuator/info").permitAll()
 				.requestMatchers("/livez", "/readyz").permitAll()
-				.requestMatchers("/v3/api-docs/**", "/scalar/**", "/docs").permitAll()
 				.requestMatchers("/error").permitAll()
 				.anyRequest()
 				.authenticated());

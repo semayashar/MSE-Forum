@@ -1,7 +1,7 @@
 package com.mse.edu.forum.service;
 
-import com.mse.edu.forum.api.generated.model.LoginRequest;
-import com.mse.edu.forum.api.generated.model.LoginResponse;
+import com.mse.edu.forum.api.model.LoginRequest;
+import com.mse.edu.forum.api.model.LoginResponse;
 import com.mse.edu.forum.security.ForumUserDetails;
 import com.mse.edu.forum.security.JwtService;
 import org.springframework.security.authentication.AuthenticationManager;
